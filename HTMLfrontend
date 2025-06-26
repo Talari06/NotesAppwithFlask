@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>My Notes</h1>
+        <form action="/add" method="POST">
+            <textarea name="note" placeholder="Write your note here..." required></textarea>
+            <button type="submit">Add Note</button>
+        </form>
+        <ul>
+            {% for note in notes %}
+                <li>
+                    {{ note }}
+                    <a href="{{ url_for('delete_note', index=loop.index0) }}">🗑️</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
